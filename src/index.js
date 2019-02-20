@@ -3,17 +3,20 @@ import "tachyons";
 
 import * as serviceWorker from './serviceWorker';
 
-import { applyMiddleware, createStore } from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
+import { requestRobots, searchRobots } from "./reducers";
 
 import App from "./containers/App";
 import { Provider } from "react-redux";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createLogger } from "redux-logger";
-import { searchRobots } from "./reducers";
+import thunkMiddleware from "redux-thunk";
 
 const logger = createLogger();
-const store = createStore(searchRobots, applyMiddleware(logger));
+
+const rootReducer = combineReducers({ searchRobots, requestRobots })
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
 
 ReactDOM.render(
 <Provider store={store}>
