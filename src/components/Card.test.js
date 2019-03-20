@@ -1,8 +1,7 @@
-import { mount, render, shallow } from "enzyme";
-
 import Card from "./Card";
 import React from "react";
+import { shallow } from "enzyme";
 
-it("expect to render Card Component", () => {
-  expect(shallow(<Card />).length).toEqual(1)
+it("expects to render Card Component", () => {
+  expect(shallow(<Card />)).toMatchSnapshot();
 })
