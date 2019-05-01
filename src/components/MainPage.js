@@ -8,33 +8,35 @@ import Header from "../components/Header";
 import Scroll from "../components/Scroll";
 import SearchBox from "../components/SearchBox";
 
-class MainPage extends Component {
+export class MainPage extends Component {
 
   componentDidMount() {
     this.props.onRequestRobots();
   }
 
   filterRobots = () => {
-    return this.props.robots.filter(robot => {
-      return robot.name.toLowerCase().includes(this.props.searchField.toLowerCase());
+    const { robots, searchField } = this.props;
+    return robots.filter(robot => {
+      return robot.name.toLowerCase().includes(searchField.toLowerCase());
     })
   }
 
   render() {
-    const { onSearchChange, isPending, robots } = this.props;
-      return isPending ?
-      <h1 className="tc">Loading</h1> :
-      (
-        <div className="tc">
-          <Header />
-          <SearchBox searchChange={onSearchChange} />
-          <Scroll>
+    const { onSearchChange, isPending } = this.props;
+
+    return (
+      <div className="tc">
+        <Header />
+        <SearchBox searchChange={onSearchChange}/>
+        <Scroll>
+          { isPending ? <h1>Loading</h1> :
             <ErrorBoundary>
-              <CardList robots={this.filterRobots} />
+              <CardList robots={this.filterRobots()} />
             </ErrorBoundary>
-          </Scroll>
-        </div>
-      );
+          }
+        </Scroll>
+      </div>
+    );
   }
 }
 

@@ -7,11 +7,11 @@ const CardList = ({ robots }) => {
       {
         robots.map((user, i) => {
           return (
-            <Card 
-              key={user.id} 
-              id={user.id} 
+            <Card
+              key={user.id}
+              id={user.id}
               name={user.name}
-              // example below using robots[index] syntax 
+              // example below using robots[index] syntax
               email={robots[i].email}
             />
           );

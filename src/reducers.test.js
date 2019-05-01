@@ -1,13 +1,7 @@
 import * as reducers from "./reducers";
+import * as types from "./constants";
 
-import {
-  CHANGE_SEARCH_FIELD,
-  REQUEST_ROBOTS_FAILED,
-  REQUEST_ROBOTS_PENDING,
-  REQUEST_ROBOTS_SUCCESS
-} from "./constants";
-
-describe("searchRobots", () => {
+describe("searchRobots reducer", () => {
   const initialStateSearch = {
     searchField: ""
   }
@@ -17,7 +11,7 @@ describe("searchRobots", () => {
 
   it("should handle CHANGE_SEARCH_FIELD", () => {
     expect(reducers.searchRobots(initialStateSearch, {
-      type: CHANGE_SEARCH_FIELD,
+      type: types.CHANGE_SEARCH_FIELD,
       payload: "abc"
     })).toEqual({
       searchField: "abc"
@@ -25,7 +19,7 @@ describe("searchRobots", () => {
   })
 })
 
-describe("requestRobots", () => {
+describe("requestRobots reducer", () => {
   const initialStateRobots = {
     robots: [],
     isPending: false,
@@ -37,7 +31,7 @@ describe("requestRobots", () => {
 
   it("should handle REQUESTS_ROBOTS_PENDING action", () => {
     expect(reducers.requestRobots(initialStateRobots, {
-      type: REQUEST_ROBOTS_PENDING
+      type: types.REQUEST_ROBOTS_PENDING
     })).toEqual({
       robots: [],
       isPending: true,
@@ -47,7 +41,7 @@ describe("requestRobots", () => {
 
   it("should handle REQUESTS_ROBOTS_SUCCESS action", () => {
     expect(reducers.requestRobots(initialStateRobots, {
-      type: REQUEST_ROBOTS_SUCCESS,
+      type: types.REQUEST_ROBOTS_SUCCESS,
       payload: [{
         id: "123",
         name: "test",
@@ -66,7 +60,7 @@ describe("requestRobots", () => {
 
   it("should handle REQUESTS_ROBOTS_FAILED action", () => {
     expect(reducers.requestRobots(initialStateRobots, {
-      type: REQUEST_ROBOTS_FAILED,
+      type: types.REQUEST_ROBOTS_FAILED,
       payload: "Noo!"
     })).toEqual({
       robots: [],
