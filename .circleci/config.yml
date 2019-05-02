@@ -1,9 +1,33 @@
 version: 2.1
-
-orbs:
-    hello: circleci/hello-build@0.0.7 # uses the circleci/buildpack-deps Docker image
-
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.9
+    steps:
+      - checkout
+      - run: echo "npm installing"
+      - run: npm install
+      - run: CI=true npm run build
+  test:
+    docker:
+      - image: circleci/node:8.9
+    steps:
+      - checkout
+      - run: echo "testing stuff"
+      - run: npm install
+      - run: npm test
+  hithere:
+    docker:
+      - image: circleci/node:8.9
+    steps:
+      - checkout
+      - run: echo "helloo!"
 workflows:
-    "Hello Workflow":
-        jobs:
-          - hello/hello-build
+  version: 2.1
+  build_test_and_lint:
+    jobs:
+      - build
+      - hithere
+      - test:
+          requires:
+            - hithere
