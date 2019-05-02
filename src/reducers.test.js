@@ -22,7 +22,7 @@ describe("searchRobots reducer", () => {
 describe("requestRobots reducer", () => {
   const initialStateRobots = {
     robots: [],
-    isPending: false,
+    isPending: true,
     error: ""
   }
   it("should return the initial state", () => {
@@ -64,7 +64,7 @@ describe("requestRobots reducer", () => {
       payload: "Noo!"
     })).toEqual({
       robots: [],
-      isPending: false,
+      isPending: true,
       error: "Noo!"
     })
   })
