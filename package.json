@@ -16,6 +16,9 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
     "gh-pages": "^2.0.1",
+    "husky": "^2.2.0",
+    "prettier": "1.17.0",
+    "pretty-quick": "^1.10.0",
     "redux-mock-store": "^1.5.3"
   },
   "homepage": "https://stephenunder.github.io/robofriends",
@@ -29,6 +32,11 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   },
   "browserslist": [
     ">0.2%",
